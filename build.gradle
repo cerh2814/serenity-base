@@ -55,6 +55,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    def parameter = "-Denvironment="
+    def environment = System.getProperty("environment")
+    jvmArgs(parameter+environment)
 }
 
 gradle.startParameter.continueOnFailure = true
