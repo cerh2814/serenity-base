@@ -18,9 +18,9 @@ public class InicioSesion implements Task {
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(
-        WaitUntil.the(CSForm.BUTTON_SUBMIT, isClickable()).forNoMoreThan(10).seconds(),
-                Click.on(CSForm.BUTTON_SUBMIT),
-                WaitUntil.the(CSForm.MESSAGE_ERROR, isVisible()).forNoMoreThan(10).seconds(),
-                Ensure.that(CSForm.MESSAGE_ERROR).text().containsIgnoringCase("El correo no está registrado"));
+        WaitUntil.the(CSForm.BUTTON_INICIOSESION ,isClickable()).forNoMoreThan(10).seconds(),
+                Click.on(CSForm.BUTTON_INICIOSESION));
+//                WaitUntil.the(CSForm.MESSAGE_ERROR, isVisible()).forNoMoreThan(10).seconds(),
+//                Ensure.that(CSForm.MESSAGE_ERROR).text().containsIgnoringCase("El correo no está registrado"));
     }
 }

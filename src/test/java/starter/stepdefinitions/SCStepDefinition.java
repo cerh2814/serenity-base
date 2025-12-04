@@ -16,10 +16,11 @@ import starter.ui.CSPage;
 import java.awt.*;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isClickable;
+import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
 
 
 public class SCStepDefinition {
-    String mail = "uno@yopmail.com";
+    String mail = "uno@yopma.com";
     String password = "Cambio123*";
     String phone = "123456789";
 
@@ -42,20 +43,38 @@ public class SCStepDefinition {
 
     }
 
-    @When("{actor} ingresa sus credenciales validas")
-    public void usuario_ingresa_sus_credenciales_validas(Actor actor) {
+    @When("{actor} clic en el boton Iniciar sesion")
+    public void usuario_clic_en_el_boton_Iniciar_sesion(Actor actor) {
+        actor.attemptsTo(
+                new InicioSesion()
+        );
+
+    }
+
+    @When("{actor} ingresa sus credenciales invalidas")
+    public void usuario_ingresa_sus_credenciales_invalidas(Actor actor) {
         actor.attemptsTo(
                new CSCredenciales(mail,password)
         );
 
     }
-    @When("{actor} clic en el boton Iniciar sesion")
-    public void usuario_clic_en_el_boton_Iniciar_sesion(Actor actor) {
-        actor.attemptsTo(
-               new InicioSesion()
-        );
 
+    @Then("{actor} recibe el mssje de error")
+    public void usuario_recibe_el_mssje_de_error(Actor actor) {
+        actor.attemptsTo(
+               new Message()
+        );
     }
+
+    @Then("{actor} realiza click en el boton de iniciar sesion")
+    public void usuario_realiza_click_en_el_boton_de_iniciar_sesion(Actor actor) {
+       actor.attemptsTo(
+
+       );
+    }
+
+
+
 
     @When("{actor} clic en el boton de registro")
     public void usuario_clic_en_el_boton_de_registro(Actor actor) {
@@ -96,8 +115,7 @@ public class SCStepDefinition {
     @When("{actor} ingresa el modulo empresa")
     public void user_ingresa_el_modulo_empresa(Actor actor) {
         actor.attemptsTo(
-                WaitUntil.the(CSForm.LINK_EMPRESAS, isClickable()).forNoMoreThan(10).seconds(),
-                Click.on(CSForm.LINK_EMPRESAS)
+
         );
     }
 
